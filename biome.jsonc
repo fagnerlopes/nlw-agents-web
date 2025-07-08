@@ -3,6 +3,12 @@
   "extends": [
     "ultracite"
   ],
+  "linter": {
+    "enabled": false
+  },
+  "assist": {
+    "enabled": false
+  },
   "javascript": {
     "formatter": {
       "semicolons": "asNeeded"
