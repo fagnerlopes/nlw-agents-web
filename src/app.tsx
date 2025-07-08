@@ -1,16 +1,21 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CreateRoom } from "./pages/create-room";
 import { Room } from "./pages/room";
+
+const queryClient = new QueryClient();
 
 export function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<CreateRoom />} index/>
-          <Route path="/room" element={<Room />} />
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<CreateRoom />} index/>
+            <Route path="/room/:roomId" element={<Room />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </div>
   )
 }
