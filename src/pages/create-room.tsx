@@ -39,6 +39,11 @@ export function CreateRoom() {
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
+              {isLoading && (
+                <div className="flex items-center justify-center h-32">
+                  <span>Carregando...</span>
+                </div>
+              )}
               {data?.map(room => {
                 console.log("CREATED: ", room.createdAt)
 
