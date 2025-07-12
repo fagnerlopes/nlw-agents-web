@@ -1,4 +1,4 @@
-import { useLoading } from "@/contexts/loading-context";
+import { useLoading } from "@/providers/loading-provider";
 import { Progress } from "@/components/ui/progress";
 
 export function LoadingScreen() {

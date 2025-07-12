@@ -2,8 +2,9 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CreateRoom } from "./pages/create-room";
 import { Room } from "./pages/room";
-import { LoadingProvider, useLoading } from "@/contexts/loading-context";
+import { LoadingProvider, useLoading } from "@/providers/loading-provider";
 import { LoadingScreen } from "@/components/loading-screen";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const queryClient = new QueryClient();
 
@@ -24,10 +25,12 @@ function InnerApp() {
 
 export function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LoadingProvider>
-        <InnerApp />
-      </LoadingProvider>
-    </QueryClientProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <QueryClientProvider client={queryClient}>
+        <LoadingProvider>
+          <InnerApp />
+        </LoadingProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
