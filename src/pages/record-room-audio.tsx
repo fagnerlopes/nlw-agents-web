@@ -1,6 +1,11 @@
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { useRef, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
+
+type RoomParams = {
+  roomId: string;
+};
 
 const isRecordingSupported = () => {
   return !!(
@@ -11,6 +16,8 @@ const isRecordingSupported = () => {
 };
 
 export function RecordRoomAudio() {
+  const params = useParams<RoomParams>();
+
   const [isRecording, setIsRecording] = useState(false);
   const recorder = useRef<MediaRecorder | null>(null);
 
@@ -22,6 +29,24 @@ export function RecordRoomAudio() {
       alert("Nenhuma gravação em andamento.");
       return;
     }
+  }
+
+  async function uploadAudio(audio: Blob) {
+    const formData = new FormData();
+
+    formData.append("file", audio, "audio.webm");
+
+    const response = await fetch(
+      `http://localhost:3333/rooms/${params.roomId}/audio`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const result = await response.json();
+
+    console.log("Resposta do servidor:", result);
   }
 
   async function startRecording() {
@@ -47,6 +72,7 @@ export function RecordRoomAudio() {
 
     recorder.current.ondataavailable = (event) => {
       if (event.data.size > 0) {
+        uploadAudio(event.data);
         console.log("Dados de áudio gravados:", event.data);
       }
     };
@@ -61,6 +87,10 @@ export function RecordRoomAudio() {
     };
 
     recorder.current.start();
+  }
+
+  if (!params.roomId) {
+    return <Navigate replace to="/" />;
   }
 
   return (
