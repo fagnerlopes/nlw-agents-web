@@ -105,7 +105,7 @@ export function RecordRoomAudio() {
   }
 
   return (
-    <div className="bg-background text-foreground min-h-screen px-4 py-8">
+    <div className="bg-background text-foreground min-h-screen">
       <Header />
       <div className="mx-auto max-w-4xl">
         <div className="h-screen flex items-center justify-center gap-3 flex-col">
