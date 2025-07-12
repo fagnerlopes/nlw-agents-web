@@ -5,6 +5,7 @@ import { Room } from "./pages/room";
 import { LoadingProvider, useLoading } from "@/providers/loading-provider";
 import { LoadingScreen } from "@/components/loading-screen";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { RecordRoomAudio } from "./pages/record-room-audio";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function InnerApp() {
       <Routes>
         <Route element={<CreateRoom />} index />
         <Route path="/room/:roomId" element={<Room />} />
+        <Route path="/room/:roomId/audio" element={<RecordRoomAudio />} />
       </Routes>
     </BrowserRouter>
   );
