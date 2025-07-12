@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { QuestionForm } from "@/components/question-form";
 import { QuestionList } from "@/components/question-list";
+import { Header } from "@/components/header";
 
 type RoomParams = {
   roomId: string;
@@ -16,7 +17,8 @@ export function Room() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="bg-background text-foreground min-h-screen">
+      <Header />
       <div className="container mx-auto max-w-4xl px-4 py-8">
         <div className="mb-8">
           <div className="mb-4 flex items-center justify-between">
