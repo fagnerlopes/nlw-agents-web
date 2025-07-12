@@ -1,12 +1,47 @@
-<!doctype html>
+<!-- public/index.html (ou root do projeto) -->
+<!DOCTYPE html>
 <html lang="pt-br" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Let me Ask</title>
+    <title>Painel</title>
+    <style>
+      /* Tela cinza escura e loading centralizado */
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        background-color: #101010;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 6px solid #333;
+        border-top-color: #FFF;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
-  <body ay-10class="antialiased">
+  <body>
+    <!-- Tela de loading antes do React -->
+    <div id="initial-loader">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Onde o React vai montar -->
     <div id="root"></div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
