@@ -51,6 +51,8 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
     console.log({ question }, roomId);
   }
 
+  const { isSubmitting } = form.formState;
+
   return (
     <Card>
       <CardHeader>
@@ -83,7 +85,9 @@ export function QuestionForm({ roomId }: QuestionFormProps) {
               )}
             />
 
-            <Button type="submit">Enviar pergunta</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Enviando..." : "Enviar pergunta"}
+            </Button>
           </form>
         </Form>
       </CardContent>
