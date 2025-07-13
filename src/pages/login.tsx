@@ -19,6 +19,7 @@ import { useAuth } from "@/http/use-auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GithubIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import z from "zod/v4";
 
 let isSending = false;
@@ -32,6 +33,7 @@ type loginFormData = z.infer<typeof loginSchema>;
 
 export function Login() {
   const { mutateAsync: loginAuth } = useAuth();
+  const navigate = useNavigate();
 
   const loginForm = useForm<loginFormData>({
     resolver: zodResolver(loginSchema),
@@ -52,6 +54,8 @@ export function Login() {
     loginForm.reset();
 
     isSending = false;
+
+    navigate("/create-room");
   }
 
   return (
