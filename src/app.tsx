@@ -6,6 +6,7 @@ import { LoadingProvider, useLoading } from "@/providers/loading-provider";
 import { LoadingScreen } from "@/components/loading-screen";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { RecordRoomAudio } from "./pages/record-room-audio";
+import { Login } from "./pages/login";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function InnerApp() {
     <BrowserRouter>
       <Routes>
         <Route element={<CreateRoom />} index />
+        <Route path="/login" element={<Login />} />
         <Route path="/room/:roomId" element={<Room />} />
         <Route path="/room/:roomId/audio" element={<RecordRoomAudio />} />
       </Routes>
