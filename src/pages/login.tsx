@@ -15,9 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "@/http/use-auth";
+import { useLogin } from "@/http/use-login";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { GithubIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import z from "zod/v4";
@@ -32,7 +31,7 @@ const loginSchema = z.object({
 type loginFormData = z.infer<typeof loginSchema>;
 
 export function Login() {
-  const { mutateAsync: loginAuth } = useAuth();
+  const { mutateAsync: loginAuth } = useLogin();
   const navigate = useNavigate();
 
   const loginForm = useForm<loginFormData>({

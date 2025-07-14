@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import type { LoginRequest } from "./types/login-request";
 import type { LoginResponse } from "./types/login-response";
 
-export function useAuth() {
+export function useLogin() {
   return useMutation({
     mutationFn: async (data: LoginRequest) => {
       const response = await fetch("http://localhost:3333/login", {
