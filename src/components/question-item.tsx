@@ -1,4 +1,4 @@
-import { Bot, Loader2, MessageSquare } from "lucide-react";
+import { Bot, Loader2, MessageSquare, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { dayjs } from "@/lib/dayjs";
 
@@ -7,6 +7,11 @@ interface Question {
   question: string;
   answer?: string | null;
   createdAt: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
 }
 
 interface QuestionItemProps {
@@ -28,7 +33,12 @@ export function QuestionItem({ question }: QuestionItemProps) {
               </div>
             </div>
             <div className="flex-1">
-              <p className="mb-1 font-medium text-foreground">Pergunta</p>
+              <div className="flex items-center gap-2 mb-1">
+                <p className="font-medium text-foreground">Pergunta</p>
+                <span className="text-muted-foreground text-xs">
+                  por {question.user.name}
+                </span>
+              </div>
               <p className="whitespace-pre-line text-muted-foreground text-sm leading-relaxed">
                 {question.question}
               </p>

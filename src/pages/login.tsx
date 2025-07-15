@@ -54,7 +54,7 @@ export function Login() {
 
     isSending = false;
 
-    navigate("/create-room");
+    navigate("/rooms", { replace: true });
   }
 
   return (
