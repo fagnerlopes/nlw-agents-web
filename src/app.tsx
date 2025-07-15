@@ -19,17 +19,12 @@ function InnerApp() {
       <Routes>
         <Route element={<Layout />}>
           <Route element={<Home />} index />
-
-          {/* Admin and Member Routes */}
-          <Route element={<ProtectedRoute allowedRoles={["admin", "member"]} />}>
-            <Route path="/room/:roomId" element={<Room />} />
-            
-          </Route>
+          <Route path="/room/:roomId" element={<Room />} />
 
           {/* Admin Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
             <Route path="/room/:roomId/audio" element={<RecordRoomAudio />} />
-            <Route path="/create-room" element={<CreateRoom />} />
+            <Route path="/rooms" element={<CreateRoom />} />
           </Route>
         </Route>
 

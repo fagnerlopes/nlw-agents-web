@@ -15,12 +15,12 @@ export function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
   if (!user) {
     // This can happen while the user is being fetched.
     // You might want to show a loading spinner here.
-    return null; 
+    return null;
   }
 
   if (allowedRoles.includes(user.role)) {
     return <Outlet />;
   }
 
-  return <Navigate to="/" replace />;
+  return <Navigate to="/rooms" replace />;
 } 

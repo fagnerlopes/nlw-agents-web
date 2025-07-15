@@ -14,12 +14,12 @@ export function Header() {
   const isHome = hideButtonsOnRoutes.includes(location.pathname)
 
   return (
-    <header className="border-b border-border">
-      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
+    <header className="border-b">
+      <div className="container mx-auto py-6 flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold text-foreground">
           LetMeAsk
         </Link>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <ModeToggle />
           {user ? (
             <UserNav />
@@ -34,9 +34,7 @@ export function Header() {
                 </Button>
               )}
             </>
-          )}
-
-          
+          )}          
         </div>
       </div>
     </header>

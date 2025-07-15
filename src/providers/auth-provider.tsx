@@ -6,6 +6,7 @@ import { useLoading } from "./loading-provider";
 interface User {
   sub: string;
   name: string;
+  email: string;
   role: "admin" | "member";
 }
 
@@ -23,7 +24,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (accessToken) {
         try {
           const response = await api.get<MeResponse>("/me");
-          setUser(response.user);
+          // Ajuste: garantir que o objeto user tenha o campo 'email'
+          setUser({
+            sub: response.user.sub,
+            name: response.user.name,
+            email: response.user.email ?? "",
+            role: response.user.role,
+          });
         } catch (error) {
           console.error("Failed to fetch user", error);
           clearAccessToken();
